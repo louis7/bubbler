@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <title>All of your post</title>
+  </head>
+  <body>
+
+    <div class="container">
+      <h2>This is all your posts!!</h2>
+        <% @post.each do |comment| %>
+        <p> <%= comment.comment %>  </p>
+          <% end %>
+    </div>
+
+
+  </body>
+</html>
