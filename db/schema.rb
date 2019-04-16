@@ -11,12 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190409030818) do
+ActiveRecord::Schema.define(version: 20190416064330) do
+
+  create_table "convos", force: :cascade do |t|
+    t.integer "convos"
+    t.integer "post_id"
+    t.integer "user_id"
+    t.integer "usercomment_id"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string  "comment"
     t.integer "user_id"
     t.integer "likes"
+  end
+
+  create_table "usercomments", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "comment"
   end
 
   create_table "users", force: :cascade do |t|
