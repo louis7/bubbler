@@ -1,5 +1,6 @@
 class Usercomment < ActiveRecord::Base
-  has_many :convos
-  has_many :users,through: :convos
+  belongs_to :convo
+  belongs_to :user
+  belongs_to :post
 
 end

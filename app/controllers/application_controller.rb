@@ -35,7 +35,7 @@ class ApplicationController < Sinatra::Base
 
       get '/all_posts' do
         @post = Post.all
-        erb :all_posts
+        erb :all_post3
       end
 
 
