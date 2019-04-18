@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+  <head>
+    <title>All of your post's convos</title>
+  </head>
+  <body>
+<h1>All of your post's convos right here</h1>
+
+<div class="container">
+  <h2>This is all your bubbles!!</h2>
+    <% @all_convos.each do |comment| %>
+    <p> <%= @sis.name %>:
+          <%= comment.comment %>
+    </p>
+      <% end %>
+</div>
+  </body>
+</html>

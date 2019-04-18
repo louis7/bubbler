@@ -41,30 +41,20 @@
 
 <body>
 
-<form class="form-signin" action="/signup" method="POST">
+<form class="form-signin" action="/signin" method="POST">
   <div class="text-center mb-4">
     <img class="mb-4" src="/bubbler.png" alt="" width="92" height="92">
     <h1 class="h3 mb-3 font-weight-normal">Bubbler</h1>
-    <p>Share your Inspirational thoughts with the world in a fun new way. <code>:placeholder-shown</code> pseudo-element. <a href="https://caniuse.com/#feat=css-placeholder-shown">Works in latest Chrome, Safari, and Firefox.</a></p>
+    <p>Share your thoughts with the world in a fun new way.</p>
   </div>
 
   <div class="form-label-group">
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputEmail">Email address</label>
+    <input class="form-control" placeholder="Email address" required autofocus>
+    <label> Name</label>
   </div>
 
-  <div class="form-label-group">
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <label for="inputPassword">Password</label>
-  </div>
-
-  <div class="checkbox mb-3">
-    <label>
-      <input type="checkbox" value="remember-me"> Remember me
-    </label>
-  </div>
   <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-{{ site.time | date: "%Y" }}</p>
+  <p class="mt-5 mb-3 text-muted text-center">&copy; Bubbler-2019</p>
 </form>
 
 

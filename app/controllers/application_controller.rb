@@ -16,15 +16,15 @@ class ApplicationController < Sinatra::Base
 
 
   ## PostsController
-    post '/signup' do
+    post '/signin' do
         @user = User.create(:name => params[:username])
         @user.save
-        redirect to '/homepage_posts'
+        redirect to '/homepage_all_posts'
       end
 
-      get '/homepage_posts' do
-        @user = User.find_by_id(1)
-        erb :post
+      get '/homepage_all_posts' do
+          @post = Post.all
+        erb :all_post4
       end
 
       post '/create_post' do
@@ -41,7 +41,25 @@ class ApplicationController < Sinatra::Base
 
 
 
-      ## PostsController
+      ## userCommentsController
+      get '/convos' do
+        @sis = User.find_by_id(1)
+
+        @convo = Convo.find_by_id(1)
+        @all_convos= @convo.usercomments
+
+        erb :all_convo
+      end
+
+      get '/create_convo' do
+        erb :create_convo
+      end
+
+      post '/create_convo' do
+          @convo = Convo.find_by_id(1)
+          @sis_comment = @convo.usercomments.create(:comment => params[:text])
+          redirect to '/convos'
+        end
 
 
 

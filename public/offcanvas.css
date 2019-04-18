@@ -66,7 +66,11 @@ body {
   font-weight: 500;
   color: #343a40;
 }
-
+@media screen and (max-width: 600px) {
+  p.{
+    font-size: 30px;
+  }
+}
 .text-white-50 { color: rgba(255, 255, 255, .5); }
 
 .bg-danger { background-color: #4a1515; }
