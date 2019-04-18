@@ -5,6 +5,9 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    enable :sessions
+    set :session_secret, "fwitter_secret"
+
   end
 
 
@@ -19,10 +22,12 @@ class ApplicationController < Sinatra::Base
     post '/signin' do
         @user = User.create(:name => params[:username])
         @user.save
+        session[:user_id] = @user.id
         redirect to '/homepage_all_posts'
       end
 
       get '/homepage_all_posts' do
+          @user = User.find_by_id(session[:user_id])
           @post = Post.all
         erb :all_post4
       end
@@ -30,35 +35,27 @@ class ApplicationController < Sinatra::Base
       post '/create_post' do
         @post = Post.create(:comment => params[:text])
         @post.save
-        redirect to '/all_posts'
+        redirect to '/homepage_all_posts'
       end
 
-      get '/all_posts' do
-        @post = Post.all
-        erb :all_post3
-      end
+
 
 
 
 
       ## userCommentsController
-      get '/convos' do
-        @sis = User.find_by_id(1)
-
-        @convo = Convo.find_by_id(1)
-        @all_convos= @convo.usercomments
-
+      get '/convos/:id' do
+        @user = User.find_by_id(session[:user_id])
+        @post = Post.find_by_id(params[:id])
+        @usercomments = @post.usercomments
         erb :all_convo
       end
 
-      get '/create_convo' do
-        erb :create_convo
-      end
+
 
       post '/create_convo' do
-          @convo = Convo.find_by_id(1)
-          @sis_comment = @convo.usercomments.create(:comment => params[:text])
-          redirect to '/convos'
+      "hello"
+
         end
 
 

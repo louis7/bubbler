@@ -105,25 +105,28 @@
   </div>
 
 
-  <h6 class="border-gray pb-2 mb-0">Share your thought bubbles</h6>
+  <h6 class="border-gray pb-2 mb-0">Share your thoughts</h6>
 
 
   <div class=" form-group border-gray pb-2 mb-0 d-flex align-items-left">
   <form action="/create_post" method="POST">
     <textarea class=" rounded" rows="3"  name = "text">
   </textarea>
-    <input class="btn btn-primary d-block mt-1" type="submit" value="Send bubble">
+    <input class="btn btn-primary d-block mt-1" type="submit" value="Send">
   </form>
 </div>
 
 
     <h6 class="border-bottom border-gray pb-2 mb-0">Recent Bubbles</h6>
-    <% @post.each do |comment| %>
+    <% @post.reverse.each do |post| %>
     <div class="card border-secondary mb-3 d-flex align-items-left p-3 my-3 text rounded shadow-sm">
       <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">@username</strong>
-         <%= comment.comment %>
+        <strong class="d-block text-gray-dark">@  <%=@user.name%>  </strong>
+         <%= post.comment %>
+         <%=@user%>
       </p>
+      <a href="http://127.0.0.1:9393/convos/<%=post.id%>"> <small> Bubble Comments </small> </a>
+
     </div>
     <% end %>
 
