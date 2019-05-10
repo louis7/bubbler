@@ -12,6 +12,22 @@ class ApplicationController < Sinatra::Base
 
 
 
+  helpers do
+
+    def logged_in?
+      !!current_user
+    end
+
+    def current_user
+      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+    end
+
+  end
+
+
+
+
+
   get '/' do
     erb :index3
   end
@@ -47,16 +63,33 @@ class ApplicationController < Sinatra::Base
       get '/convos/:id' do
         @user = User.find_by_id(session[:user_id])
         @post = Post.find_by_id(params[:id])
-        @usercomments = @post.usercomments
+        @convo = @post.convo
+        @usercomments = Usercomment.all
         erb :all_convo
       end
 
 
+      post '/convos/:id/create' do
 
-      post '/create_convo' do
-      "hello"
+        @user = User.find_by_id(session[:user_id])
+                @post = Post.find_by_id(params[:id])
+                if @post.convo.empty?
+                      @convo = @post.convo.create(convos:1)
+                      @user_comment = Usercomment.create(:comment => params[:text]) #need to fix
+                      @user_comment.user_id = @user.id
+                      @user_comment.post_id = @post.id
+                      @user_comment.save
+                       else
+                         @convo = @post.convo
+                         @user_comment = Usercomment.create(:comment => params[:text]) # need to fix
+                         @user_comment.user_id = @user.id
+                         @user_comment.post_id = @post.id
+                         @user_comment.save
+                       end
+                       redirect to '/convos/:id'
+                     end
 
-        end
+
 
 
 
